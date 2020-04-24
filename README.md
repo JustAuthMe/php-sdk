@@ -47,7 +47,7 @@ $jamSdk = new JamSdk($app_id, $redirect_url, $api_secret);
 
 #### 2.2 Use a custom link
 
-```php
+```html
 <a href="<?php echo $jamSdk->generateLoginUrl(); ?>">Login with JustAuthMe</a>
 ```
 
