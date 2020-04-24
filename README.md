@@ -59,13 +59,21 @@ $jamSdk = new JamSdk($app_id, $redirect_url, $api_secret);
 use JustAuthMe\SDK\JamSdk;
 
 if (isset($_GET['access_token'])) {
+    // The expected access_token is present
+
     $jamSdk = new JamSdk($app_id, $redirect_url, $api_secret);
+    
     try {
+    
         $user_infos = $jamSdk->getUserInfos($_GET['access_token']);
+        
     } catch (Exception $e) {
+    
         error_log($e->getMessage());
         // Login fail, redirect to an error page and stop this script execution
+        
         die;
+        
     }
 
     /*
@@ -73,11 +81,14 @@ if (isset($_GET['access_token'])) {
      * depending on the presence in your Database of
      * the provided $user_infos->jam_id
      */
+     
 } else {
+
     /*
      * The callback URL wasn't called with the correct parameter
      * you should redirect to an error page
      */
+     
 }
 ```
 
