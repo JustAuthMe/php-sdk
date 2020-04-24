@@ -9,6 +9,7 @@
         1. [Use the default button](#21-use-the-default-button)
         2. [Use a custom link](#22-use-a-custom-link)
     3. [Get user infos from your callback](#3-get-user-infos-from-your-callback-redirect_url)
+3. [Complete documentation](#complete-documentation)
 3. [Troubleshooting](#troubleshooting)
 
 ## Installation
@@ -82,7 +83,7 @@ if (isset($_GET['access_token'])) {
 
 ## Complete documentation
 
-For a complete documentation of this SDK, please see `DOCUMENTATION.md`
+For a complete documentation of this SDK, please see [DOCUMENTATION.md](https://github.com/JustAuthMe/PHP-SDK/blob/master/DOCUMENTATION.md)
 
 ## Troubleshooting
 
