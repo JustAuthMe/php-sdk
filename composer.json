@@ -3,7 +3,7 @@
     "description": "Official PHP SDK for the JustAuthMe platform",
     "type": "library",
     "license": "mit",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Peter Cauty",
