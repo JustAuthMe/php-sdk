@@ -1,0 +1,22 @@
+{
+    "name": "justauthme/php-sdk",
+    "description": "Official PHP SDK for the JustAuthMe platform",
+    "type": "library",
+    "license": "mit",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Peter Cauty",
+            "email": "peter@justauth.me",
+            "homepage": "https://justauth.me"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JustAuthMe\\SDK\\": "src/"
+        }
+    }
+}
