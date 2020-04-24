@@ -64,31 +64,23 @@ if (isset($_GET['access_token'])) {
     $jamSdk = new JamSdk($app_id, $redirect_url, $api_secret);
     
     try {
-    
         $user_infos = $jamSdk->getUserInfos($_GET['access_token']);
-        
-    } catch (Exception $e) {
-    
-        error_log($e->getMessage());
-        // Login fail, redirect to an error page and stop this script execution
-        
-        die;
-        
-    }
 
-    /*
-     * Everything is fine, you can now register or login the user,
-     * depending on the presence in your Database of
-     * the provided $user_infos->jam_id
-     */
+        /*
+         * Everything is fine, you can now register or login the user,
+         * depending on the presence in your Database of
+         * the provided $user_infos->jam_id
+         */
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+        // Login fail, you should redirect to an error page
+    }
      
 } else {
-
     /*
      * The callback URL wasn't called with the correct parameter
      * you should redirect to an error page
      */
-     
 }
 ```
 
