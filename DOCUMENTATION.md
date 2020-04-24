@@ -18,7 +18,7 @@
 
 ## Methods
 
-### generateLoginUrl
+### `generateLoginUrl`
 
 #### Params
 
@@ -29,7 +29,7 @@ None
 `string`: A URL that your users need to be redirected to in order to login to your website
 with their JustAuthMe account.
 
-### generateDefaultButtonHtml
+### `generateDefaultButtonHtml`
 
 #### Params
 
@@ -40,7 +40,7 @@ None
 `string`: A piece of HTML code that you can `echo` in your HTML page. It will display
 the default "Login with JustAuthMe" button/badge, already linked to your very own login URL.
 
-### getUserInfos
+### `getUserInfos`
 
 #### Params
 
@@ -53,13 +53,13 @@ the default "Login with JustAuthMe" button/badge, already linked to your very ow
 `stdClass`: A standard object containing `jam_id` and, if this is the first login of the user,
 all requested user data such as `email`, `firstname`, `lastname`, `birthdate` or `avatar`.
 
-### getAppId
+### `getAppId`
 
 #### Return
 
 `string`: `app_id`
 
-### setAppId
+### `setAppId`
 
 #### Params
 
@@ -71,13 +71,13 @@ all requested user data such as `email`, `firstname`, `lastname`, `birthdate` or
 
 `void`
 
-### getRedirectUrl
+### `getRedirectUrl`
 
 #### Return
 
 `string`: `redirect_url`
 
-### setRedirecturl
+### `setRedirecturl`
 
 #### Params
 
@@ -89,13 +89,13 @@ all requested user data such as `email`, `firstname`, `lastname`, `birthdate` or
 
 `void`
 
-### getApiSecret
+### `getApiSecret`
 
 #### Return
 
 `string`: `api_secret`
 
-### SetApiSecret
+### `setApiSecret`
 
 #### Params
 
