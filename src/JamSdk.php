@@ -85,7 +85,7 @@ class JamSdk
             )
         );
 
-        $status_code = substr($http_response_header[0], 9, 3);
+        $status_code = (int) substr($http_response_header[0], 9, 3);
 
         switch ($status_code) {
             case 200:
