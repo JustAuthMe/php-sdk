@@ -90,7 +90,7 @@ class JamSdk
         switch ($status_code) {
             case 200:
                 $to_return = clone $response;
-                unset($to_return['status']);
+                unset($to_return->status);
                 return $to_return;
 
             case 400:
