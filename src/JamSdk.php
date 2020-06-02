@@ -19,8 +19,16 @@ use stdClass;
 class JamSdk
 {
     const CORE_URL = 'https://core.justauth.me/';
+    const STATIC_URL = 'https://static.justauth.me/medias/';
     const API_URL = self::CORE_URL . 'api/';
-    const DEFAULT_BUTTON = 'https://static.justauth.me/medias/button.png';
+
+    const ACCEPT_LANGUAGES = ['fr', 'en'];
+    const DEFAULT_LANGUAGE = 'en';
+
+    const ACCEPT_SIZES = ['x1', 'x2', 'x4'];
+    const DEFAULT_SIZE = 'x2';
+
+    const BUTTON_WIDTH = 280;
 
     private $app_id;
     private $redirect_url;
@@ -49,14 +57,33 @@ class JamSdk
     }
 
     /**
-     * Generate a piece of HTML that include the default login button
+     * Generate the button URL associated with the provided lang and size
+     * @param string $lang
+     * @param string $size
      * @return string
      */
-    public function generateDefaultButtonHtml(): string
+    private function generateButtonUrl(string $lang, string $size): string
     {
-        return '<a href="' . $this->generateLoginUrl() . '">' .
-            '<img src="' . self::DEFAULT_BUTTON . '" alt="Login with JustAuthMe" />' .
-            '</a>';
+        $lang = in_array($lang, self::ACCEPT_LANGUAGES) ? $lang : self::DEFAULT_LANGUAGE;
+        $size = in_array($size, self::ACCEPT_SIZES) ? $size : self::DEFAULT_SIZE;
+
+        return self::STATIC_URL . 'button_' . $lang . '_' . $size . '.png';
+    }
+
+    /**
+     * Generate a piece of HTML that include the default login
+     * button associated with the provided lang and size
+     * @param string $lang
+     * @param string $size
+     * @return string
+     */
+    public function generateDefaultButtonHtml(string $lang = 'en', string $size = 'x2'): string
+    {
+        return '<div style="margin: 20px 0; width: ' . self::BUTTON_WIDTH . 'px;">' .
+            '<a href="' . $this->generateLoginUrl() . '">' .
+            '<img width="' . self::BUTTON_WIDTH . '" src="' . $this->generateButtonUrl($lang, $size) . '" alt="Login with JustAuthMe" />' .
+            '</a>' .
+            '</div>';
     }
 
     /**

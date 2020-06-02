@@ -33,7 +33,10 @@ with their JustAuthMe account.
 
 #### Params
 
-None
+|Name  |Type    |Required|Default|Description                                                        |
+|------|--------|--------|-------|-------------------------------------------------------------------|
+|`lang`|`string`|No      |`en`   |The language used to display the text inside the button: `fr`, `en`|
+|`size`|`string`|No      |`x2`   |The size of the button, used for Retina displays: `x1`, `x2`, `x4` |
 
 #### Return
 
@@ -44,9 +47,9 @@ the default "Login with JustAuthMe" button/badge, already linked to your very ow
 
 #### Params
 
-|Name          |Type    |Description                                           |
-|--------------|--------|------------------------------------------------------|
-|`access_token`|`string`|The token you get in the params of your `redirect_url`|
+|Name          |Type    |Required|Description                                           |
+|--------------|--------|--------|------------------------------------------------------|
+|`access_token`|`string`|Yes     |The token you get in the params of your `redirect_url`|
 
 #### Return
 
@@ -63,9 +66,9 @@ all requested user data such as `email`, `firstname`, `lastname`, `birthdate` or
 
 #### Params
 
-|Name    |Type    |Description     |
-|--------|--------|----------------|
-|`app_id`|`string`|The new `app_id`|
+|Name    |Type    |Required|Description     |
+|--------|--------|--------|----------------|
+|`app_id`|`string`|Yes     |The new `app_id`|
 
 #### Return
 
@@ -81,9 +84,9 @@ all requested user data such as `email`, `firstname`, `lastname`, `birthdate` or
 
 #### Params
 
-|Name          |Type    |Description           |
-|--------------|--------|----------------------|
-|`redirect_url`|`string`|The new `redirect_url`|
+|Name          |Type    |Required|Description           |
+|--------------|--------|--------|----------------------|
+|`redirect_url`|`string`|Yes     |The new `redirect_url`|
 
 #### Return
 
@@ -99,9 +102,9 @@ all requested user data such as `email`, `firstname`, `lastname`, `birthdate` or
 
 #### Params
 
-|Name        |Type    |Description         |
-|------------|--------|--------------------|
-|`api_secret`|`string`|The new `api_secret`|
+|Name        |Type    |Required|Description         |
+|------------|--------|--------|--------------------|
+|`api_secret`|`string`|Yes     |The new `api_secret`|
 
 #### Return
 

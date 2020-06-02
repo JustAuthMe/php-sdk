@@ -41,8 +41,13 @@ $jamSdk = new JamSdk($app_id, $redirect_url, $api_secret);
 
 #### 2.1 Use the default button
 
+The `generateDefaultButtonHtml` method take 2 parameters: `lang` and `size`.
+You can chose between `fr` and `en` languages, and between `x1`, `x2` and `x4` sizes.
+
+Default `lang` is `en`, default `size` is `x2`.
+
 ```php
-<?php echo $jamSdk->generateDefaultButtonHtml(); ?>
+<?php echo $jamSdk->generateDefaultButtonHtml($lang, $size); ?>
 ```
 
 #### 2.2 Use a custom link
