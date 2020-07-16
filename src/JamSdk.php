@@ -11,7 +11,9 @@ namespace JustAuthMe\SDK;
 
 use JustAuthMe\SDK\Exceptions\JamBadRequestException;
 use JustAuthMe\SDK\Exceptions\JamInternalServerErrorException;
+use JustAuthMe\SDK\Exceptions\JamMissingIdException;
 use JustAuthMe\SDK\Exceptions\JamNotFoundException;
+use JustAuthMe\SDK\Exceptions\JamNotJsonException;
 use JustAuthMe\SDK\Exceptions\JamUnauthorizedException;
 use JustAuthMe\SDK\Exceptions\JamUnknowErrorException;
 use stdClass;
@@ -57,6 +59,67 @@ class JamSdk
     }
 
     /**
+     * Return user infos associated with provided access_token
+     * @param string $access_token
+     * @return stdClass
+     * @throws JamNotJsonException
+     * @throws JamMissingIdException
+     * @throws JamBadRequestException
+     * @throws JamUnauthorizedException
+     * @throws JamNotFoundException
+     * @throws JamInternalServerErrorException
+     * @throws JamUnknowErrorException
+     */
+    public function getUserInfos(string $access_token): stdClass
+    {
+        $opts = ['http' => [
+            'ignore_errors' => true
+        ]];
+        $context = stream_context_create($opts);
+
+        /** @var stdClass $response */
+        $response = json_decode(
+            file_get_contents(
+                self::API_URL . 'data?access_token=' . $access_token . '&secret=' . $this->api_secret,
+                false,
+                $context
+            )
+        );
+
+        if ($response === null) {
+            throw new JamNotJsonException('API responded with an invalid JSON. Please contact developers@justauth.me');
+        }
+
+        $status_code = (int) substr($http_response_header[0], 9, 3);
+
+        switch ($status_code) {
+            case 200:
+                if (!isset($response->jam_id)) {
+                    throw new JamMissingIdException('API response is 200 OK but data is not well formed. Please contact developers@justauth.me');
+                }
+
+                $to_return = clone $response;
+                unset($to_return->status);
+                return $to_return;
+
+            case 400:
+                throw new JamBadRequestException('Access-Token or API Secret are missing. Please contact developers@justauth.me');
+
+            case 401:
+                throw new JamUnauthorizedException('Api Secret is invalid');
+
+            case 404:
+                throw new JamNotFoundException('No such Access-Token');
+
+            case 500:
+                throw new JamInternalServerErrorException('Wrong data format. Please contact developers@justauth.me');
+
+            default:
+                throw new JamUnknowErrorException('Unknow error. Please contact developers@justauth.me');
+        }
+    }
+
+    /**
      * Generate the button URL associated with the provided lang and size
      * @param string $lang
      * @param string $size
@@ -84,61 +147,6 @@ class JamSdk
             '<img width="' . self::BUTTON_WIDTH . '" src="' . $this->generateButtonUrl($lang, $size) . '" alt="Login with JustAuthMe" />' .
             '</a>' .
             '</div>';
-    }
-
-    /**
-     * Return user infos associated with provided access_token
-     * @param string $access_token
-     * @return stdClass
-     * @throws JamBadRequestException
-     * @throws JamUnauthorizedException
-     * @throws JamNotFoundException
-     * @throws JamInternalServerErrorException
-     * @throws JamUnknowErrorException
-     */
-    public function getUserInfos(string $access_token): stdClass
-    {
-        $opts = ['http' => [
-            'ignore_errors' => true
-        ]];
-        $context = stream_context_create($opts);
-
-        /** @var stdClass $response */
-        $response = json_decode(
-            file_get_contents(
-                self::API_URL . 'data?access_token=' . $access_token . '&secret=' . $this->api_secret,
-                false,
-                $context
-            )
-        );
-
-        $status_code = (int) substr($http_response_header[0], 9, 3);
-
-        switch ($status_code) {
-            case 200:
-                $to_return = clone $response;
-                unset($to_return->status);
-                return $to_return;
-
-            case 400:
-                throw new JamBadRequestException('Access-Token and API Secret are required. Please contact support@justauth.me');
-                break;
-
-            case 401:
-                throw new JamUnauthorizedException('Api Secret is invalid');
-                break;
-
-            case 404:
-                throw new JamNotFoundException('No such Access-Token');
-                break;
-
-            case 500:
-                throw new JamInternalServerErrorException('Wrong data format. Please contact support@justauth.me');
-                break;
-
-            default:
-                throw new JamUnknowErrorException('Unknow error. Please contact support@justauth.me');
-        }
     }
 
     /**

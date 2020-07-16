@@ -112,11 +112,24 @@ all requested user data such as `email`, `firstname`, `lastname`, `birthdate` or
 
 # Exceptions
 
+## Not JSON
+
+`JamNotJsonException`: The API responded with an invalid JSON. This is an issue on our
+side. If it happens, please contact [developers@justauth.me](mailto:developers@justauth.me).
+
+## Missing ID
+
+`JamMissingIdException`: The API returned a valid response (200 OK) but the JAM_ID is
+not part of the response. Without this informaton, you cannot perform any login. This is
+an issue on our side. If it happens, please contact
+[developers@justauth.me](mailto:developers@justauth.me).
+
 ## Bad Request
 
 `JamBadRequestException`: The `access_token` or the `api_secret` (or both) are missing.
 This should not happens if you are using the official SDK. If it happens anyway, open an
-issue here or contact [support@justauth.me](mailto:support@justauth.me)
+issue on [Github](https://github.com/justauthme/php-sdk) or contact
+[developers@justauth.me](mailto:developers@justauth.me).
 
 ## Unauthorized
 
@@ -124,12 +137,12 @@ issue here or contact [support@justauth.me](mailto:support@justauth.me)
 
 ## Not Found
 
-`JamNotFoundException`: The `access_token` your provided does not match any ongoing login
+`JamNotFoundException`: The `access_token` you provided does not match any ongoing login
 
 ## Internal Server Error
 
 `JamInternalServerErrorException`:  Something went badly wrong on our side. Please report
-this issue at [support@justauth.me](mailto:support@justauth.me)
+this issue at [developers@justauth.me](mailto:developers@justauth.me).
 
 ## Unknow Error
 
@@ -137,5 +150,5 @@ this issue at [support@justauth.me](mailto:support@justauth.me)
 
 # Troubleshooting
 
-If anything goes wrong, feel free to open an issue on this repo,
-we will be pleased to help you.
+If anything goes wrong, feel free to open an issue on
+[Github](https://github.com/justauthme/php-sdk), we will be pleased to help you.
