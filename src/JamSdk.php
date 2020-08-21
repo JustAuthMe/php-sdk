@@ -28,9 +28,7 @@ class JamSdk
     const DEFAULT_LANGUAGE = 'en';
 
     const ACCEPT_SIZES = ['x1', 'x2', 'x4'];
-    const DEFAULT_SIZE = 'x2';
-
-    const BUTTON_WIDTH = 280;
+    const DEFAULT_SIZE = 'x1';
 
     private $app_id;
     private $redirect_url;
@@ -125,7 +123,7 @@ class JamSdk
      * @param string $size
      * @return string
      */
-    private function generateButtonUrl(string $lang, string $size): string
+    public function generateButtonUrl(string $lang, string $size): string
     {
         $lang = in_array($lang, self::ACCEPT_LANGUAGES) ? $lang : self::DEFAULT_LANGUAGE;
         $size = in_array($size, self::ACCEPT_SIZES) ? $size : self::DEFAULT_SIZE;
@@ -140,13 +138,11 @@ class JamSdk
      * @param string $size
      * @return string
      */
-    public function generateDefaultButtonHtml(string $lang = 'en', string $size = 'x2'): string
+    public function generateDefaultButtonHtml(string $lang = self::DEFAULT_LANGUAGE, string $size = self::DEFAULT_SIZE): string
     {
-        return '<div style="margin: 20px 0; width: ' . self::BUTTON_WIDTH . 'px;">' .
-            '<a href="' . $this->generateLoginUrl() . '">' .
-            '<img width="' . self::BUTTON_WIDTH . '" src="' . $this->generateButtonUrl($lang, $size) . '" alt="Login with JustAuthMe" />' .
-            '</a>' .
-            '</div>';
+        return '<a href="' . $this->generateLoginUrl() . '">' .
+            '<img src="' . $this->generateButtonUrl($lang, $size) . '" alt="Login with JustAuthMe" />' .
+            '</a>';
     }
 
     /**
