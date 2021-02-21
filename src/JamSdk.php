@@ -134,6 +134,10 @@ class JamSdk
     }
 
     /**
+     * @deprecated
+     * Deprecated: please use the full HTML/CSS button available at https://github.com/justauthme/button
+     *
+     * OLD PHPDOC:
      * Generate a piece of HTML that include the default login
      * button associated with the provided lang and size
      * @param string $lang

@@ -29,7 +29,9 @@ None
 `string`: A URL that your users need to be redirected to in order to login to your website
 with their JustAuthMe account.
 
-### `generateDefaultButtonHtml`
+### ~~generateDefaultButtonHtml~~
+
+__DEPRECATED: Please see the official button repository for full documentation: https://github.com/justauthme/button__
 
 #### Params
 

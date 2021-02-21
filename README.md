@@ -39,7 +39,9 @@ $jamSdk = new JamSdk($app_id, $redirect_url, $api_secret);
 
 ### 2. Display the login link
 
-#### 2.1 Use the default button
+#### 2.1 Use the default button (DEPRECATED)
+
+__Please see the official button repository for complete documentation: https://github.com/justauthme/button__
 
 The `generateDefaultButtonHtml` method take 2 parameters: `lang` and `size`.
 You can chose between `fr` and `en` languages, and between `x1`, `x2` and `x4` sizes.
@@ -47,7 +49,7 @@ You can chose between `fr` and `en` languages, and between `x1`, `x2` and `x4` s
 Default `lang` is `en`, default `size` is `x2`.
 
 ```php
-<?php echo $jamSdk->generateDefaultButtonHtml($lang, $size); ?>
+<?php /* DEPRECATED */ echo $jamSdk->generateDefaultButtonHtml($lang, $size); ?>
 ```
 
 #### 2.2 Use a custom link
